@@ -1,9 +1,9 @@
-import set from "lodash.set";
-import get from "lodash.get";
-import throttle from "lodash.throttle";
-import merge from "lodash.merge";
+const set = require("lodash.set");
+const get = require("lodash.get");
+const throttle = require("lodash.throttle");
+const merge = require("lodash.merge");
 
-import { saveKey, getKey } from "./localStorage.js";
+const { saveKey, getKey } = require("./localStorage.js");
 
 const DUMMY_ACTION = "STORE_KEEPER/GET_INITIAL_STATE";
 const SAVE_INTERVAL = 2500;
@@ -14,7 +14,7 @@ const SAVE_INTERVAL = 2500;
  * @param {String} cacheBuster Cache invalidation token
  * @returns {Object}
  */
-export const getPersistedState = (reducer, key, cacheBuster) => {
+function getPersistedState(reducer, key, cacheBuster) {
   const initialState = {};
   const savedState = getKey(key, cacheBuster);
 
@@ -23,7 +23,7 @@ export const getPersistedState = (reducer, key, cacheBuster) => {
   }
 
   return initialState;
-};
+}
 /**
  * Subscribes on store changes and save interesting fields
  * @param {Object} store Redux store instance
@@ -31,7 +31,7 @@ export const getPersistedState = (reducer, key, cacheBuster) => {
  * @param {String[]} fields Field paths store to
  * @returns {Object} Store instance
  */
-export const persistState = (store, key, fields) => {
+function persistState(store, key, fields) {
   const finalKey = key;
 
   store.subscribe(
@@ -39,8 +39,8 @@ export const persistState = (store, key, fields) => {
       const state = store.getState();
       const toSave = {};
 
-      for (const field of fields) {
-        set(toSave, field, get(state, field));
+      for (let i = 0; i < fields.length; i++) {
+        set(toSave, fields[i], get(state, fields[i]));
       }
 
       saveKey(finalKey, toSave);
@@ -48,4 +48,6 @@ export const persistState = (store, key, fields) => {
   );
 
   return store;
-};
+}
+
+module.exports = { persistState, getPersistedState };

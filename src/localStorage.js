@@ -6,14 +6,16 @@ if (!window || !window.localStorage) {
  * @param {*} key
  * @param {*} cacheBuster
  */
-const buildKey = (key, cacheBuster) => `${key}--${cacheBuster}`;
+function buildKey(key, cacheBuster) {
+  return key + "--" + cacheBuster;
+}
 /**
  *
  * @param {*} key
  */
-export function getKey(key, cacheBuster) {
+function getKey(key, cacheBuster) {
   try {
-    const savedCacheBuster = localStorage.getItem("cacheBuster");
+    const savedCacheBuster = window.localStorage.getItem("cacheBuster");
 
     if (savedCacheBuster !== cacheBuster) {
       window.localStorage.setItem("cacheBuster", cacheBuster);
@@ -37,7 +39,7 @@ export function getKey(key, cacheBuster) {
  * @param {*} key
  * @param {*} data
  */
-export function saveKey(key, data) {
+function saveKey(key, data) {
   try {
     const cacheBuster = localStorage.getItem("cacheBuster") || "";
 
@@ -47,3 +49,5 @@ export function saveKey(key, data) {
     );
   } catch (e) {}
 }
+
+module.exports = { getKey, saveKey };
