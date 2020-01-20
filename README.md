@@ -1,6 +1,6 @@
 # storekeep
 
-`storekeep` is a simple store saver for redux applications. `storekeep` allows to save some deep redux store fields between reloads of an application.
+`storekeep` is a simple partial store saver for redux applications. `storekeep` allows to save some deep redux store fields between reloads of an application.
 
 ```js
 import { createStore } from "redux";
