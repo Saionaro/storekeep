@@ -1,7 +1,5 @@
 import { Reducer, Store } from "redux";
 
-// declare namespace "storekeep" {
-// }
 export declare function getPersistedState(
   reducer: Reducer,
   key: string,

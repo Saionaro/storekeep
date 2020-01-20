@@ -6,7 +6,8 @@
   "author": "Saionaro <shibakow@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint --ext .js . src"
+    "lint": "eslint --ext .js . src",
+    "publish:patch": "npm version patch && git push --follow-tags && npm publish"
   },
   "dependencies": {
     "lodash.get": "^4.4.2",
