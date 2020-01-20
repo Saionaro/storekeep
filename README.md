@@ -1,6 +1,8 @@
-# storekeep
+# storekeep [![npm version](https://badge.fury.io/js/storekeep.svg)](https://badge.fury.io/js/storekeep)
 
 `storekeep` is a simple partial store saver for redux applications. `storekeep` allows to save some deep redux store fields between reloads of an application.
+
+## Example
 
 ```js
 import { createStore } from "redux";
@@ -35,3 +37,33 @@ const reduxStore = persistState(
   FIELDS_TO_SAVE,
 );
 ```
+
+## Installation
+
+### Download package
+
+For NPM users:
+
+`npm i storekeep`
+
+or if you using Yarn:
+
+`yarn add storekeep`
+
+## Options
+
+`getPersistedState(reducer, localStorageField, cacheToken)`
+
+| Name               | Type     | Default value | Description                                                                                   |
+| ------------------ | -------- | ------------- | --------------------------------------------------------------------------------------------- |
+| `reducer` | `Function` | undefined | Application root reducer to generate initial state |
+| `localStorageField` | `string` | undefined | The target loccal storage field where data save to |
+| `cacheToken` | `string` | undefined | Cache invalidation token - if changed `storekeep` will clear a previous data |
+
+`persistState(store, localStorageField, fieldsToSave)`
+
+| Name               | Type     | Default value | Description                                                                                   |
+| ------------------ | -------- | ------------- | --------------------------------------------------------------------------------------------- |
+| `store` | `ReduxStore` | undefined | Application redux store |
+| `localStorageField` | `string` | undefined | The target loccal storage field where data save to |
+| `fieldsToSave` | `string[]` | undefined | List of deep redux store fields to save|
