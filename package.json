@@ -1,6 +1,6 @@
 {
   "name": "storekeep",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The simple partial store saver for redux applications",
   "repository": "git@github.com:Saionaro/storekeep.git",
   "author": "Saionaro <shibakow@gmail.com>",
